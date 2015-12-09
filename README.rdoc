@@ -1,0 +1,21 @@
+This is my implementation of an MVC framework that behaves a lot like Rails.  You
+can define routes, define associations between models, and render views via
+controllers.  Data is persisted between requests, but in this example I do reset
+the database before starting up the server.  Again, it was rendered almost
+trivial with knowledge of the APIs of the following libraries: Rack,
+active_support/inflector, Regexp, and ERB.  To experiment with it, run
+'ruby server.rb' and use the following API I have set up to interact with the
+database via the browser:
+
+'/users' - lists all users in the database
+'/users/new' - create a new user
+'/user/:id' - where ':id' is the primary key of a user in the database, show user
+
+'/users/:id/conversations' - where ':id' is the primary key of a user in the
+database, show the conversations that the user is involved in
+'/conversatons/new' - create a new conversation between two users
+'/users/:id/conversations/:conversation_id' - show a specific conversation that
+a user is involved in
+
+'/conversations/:conversation_id/messages' - show all the messages of a conversation
+'/messages/new' - create a new message
