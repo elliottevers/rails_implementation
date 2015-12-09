@@ -1,0 +1,11 @@
+<form action="/conversations" method="POST">
+  <label>User ID
+    <input type="text" name="conversation[sender_id]" value="<%= @conversation.sender_id %>">
+  </label>
+
+  <label>Other User ID
+    <input type="text" name="conversation[recipient_id]" value="<%= @conversation.recipient_id %>">
+  </label>
+
+  <input type="submit">
+</form>

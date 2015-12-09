@@ -1,0 +1,11 @@
+<form action="/users" method="POST">
+  <label>Username
+    <input type="text" name="user[username]" value="<%= @user.username %>">
+  </label>
+
+  <label>Discovery Radius
+    <input type="text" name="user[discovery_radius]" value="<%= @user.discovery_radius %>">
+  </label>
+
+  <input type="submit">
+</form>

@@ -1,0 +1,15 @@
+<form action="/messages" method="POST">
+  <label>Message Content
+    <input type="text" name="message[body]" value="<%= @message.body %>">
+  </label>
+
+  <label>from user (insert id)
+    <input type="text" name="message[user_id]" value="<%= @message.user_id %>">
+  </label>
+
+  <label>within the context of conversation (insert id)
+    <input type="text" name="message[conversation_id]" value="<%= @message.conversation_id %>">
+  </label>
+
+  <input type="submit">
+</form>
