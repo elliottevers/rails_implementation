@@ -7,15 +7,19 @@ class ControllerBase
   attr_reader :req, :res, :params
 
   def initialize(req, res, route_params = {})
-    @req, @res = req, res
+    @req = req
+    @res = res
     @params = route_params.merge(req.params)
   end
 
   def render(template_name)
     dir_path = File.dirname(__FILE__)
     template_fname = File.join(
-      dir_path, "..",
-      "views", self.class.name.underscore.split("_").first.singularize, "#{template_name}.html.erb"
+      dir_path,
+      "..",
+      "views",
+      self.class.name.underscore.split("_").first.singularize,
+      "#{template_name}.html.erb"
     )
 
     template_code = File.read(template_fname)
