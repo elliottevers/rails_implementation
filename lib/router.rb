@@ -1,5 +1,6 @@
 require 'active_support'
 require 'active_support/core_ext'
+require_relative 'route'
 
 class Router
   attr_reader :routes
@@ -18,46 +19,20 @@ class Router
     @routes << Route.new(pattern, verb, controller, method)
   end
 
+  def run(req, res)
+    if find_match(req).nil?
+      res.status = 404
+    else
+      find_match(req).run(req, res)
+    end
+  end
+
   def find_match(req)
-    routes.find { |route| route.matches?(req) }
+    @routes.find { |route| route.matches?(req) }
   end
 
   def draw(&proc)
     instance_eval(&proc)
   end
 
-  def run(req, res)
-    matching_route = find_match(req)
-
-    if matching_route.nil?
-      res.status = 404
-    else
-      matching_route.run(req, res)
-    end
-  end
-end
-
-class Route
-  attr_reader :pattern, :verb, :controller, :method
-
-  def initialize(pattern, verb, controller, method)
-    @pattern = Regexp.new(pattern)
-    @verb = verb
-    @controller = (controller
-                          .to_s
-                          .capitalize
-                          .pluralize + "Controller"
-                        ).constantize
-    @method = method
-  end
-
-  def matches?(req)
-    (@verb == req.request_method.downcase.to_sym) && !!(@pattern =~ req.path)
-  end
-
-  def run(req, res)
-    params = @pattern.match(req.path)
-    route_params = Hash[params.names.zip(params.captures)]
-    @controller.new(req, res, route_params).run_method(method)
-  end
 end

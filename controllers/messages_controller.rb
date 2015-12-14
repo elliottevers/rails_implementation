@@ -1,8 +1,8 @@
-require_relative '../lib/controller_base'
+require_relative '../lib/application_controller'
 model_files = File.join(File.dirname(__FILE__), "../models/*.rb")
 Dir[model_files].each {|file| require file }
 
-class MessagesController < ControllerBase
+class MessagesController < ApplicationController
 
   def create
     @message = Message.new(
@@ -32,7 +32,7 @@ class MessagesController < ControllerBase
       .where(:id => Integer(params['conversation_id']))
       .first
       .messages
-    render_content(@messages.to_json, "application/json")
+    render @messages.to_json
   end
 
 end

@@ -1,4 +1,4 @@
-require_relative '../lib/controller_base'
+require_relative '../lib/application_controller'
 require_relative '../lib/router'
 
 @execute = Proc.new do
