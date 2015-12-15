@@ -1,6 +1,6 @@
-require_relative '../lib/active_record_object'
+require_relative '../lib/active_records_base'
 
-class User < ActiveRecordObject
+class User < ActiveRecordsBase
   has_many :conversations, :foreign_key => :sender_id
-  self.finalize!
+  self.finalize
 end

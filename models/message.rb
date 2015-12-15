@@ -1,7 +1,7 @@
-require_relative '../lib/active_record_object'
+require_relative '../lib/active_records_base'
 
-class Message < ActiveRecordObject
+class Message < ActiveRecordsBase
   belongs_to :conversation
   belongs_to :user
-  self.finalize!
+  self.finalize
 end

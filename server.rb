@@ -1,12 +1,12 @@
 require 'rack'
-require_relative 'lib/db_connection'
+require_relative 'lib/database'
 require_relative 'config/routes'
 controller_files = File.join(File.dirname(__FILE__), "/controllers/*.rb")
 Dir[controller_files].each {|file| require file }
 
 @execute.call
 
-DBConnection.reset
+Database.reset
 
 app = Proc.new do |env|
   req = Rack::Request.new(env)
