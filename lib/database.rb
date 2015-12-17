@@ -23,7 +23,6 @@ class Database
       "rm '#{USERS_DB}'",
       "cat '#{USERS_SQL}' | sqlite3 '#{USERS_DB}'"
     ]
-
     commands.each { |command| `#{command}` }
     Database.open(USERS_DB)
   end
