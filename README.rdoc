@@ -1,11 +1,12 @@
 This is my minimal implementation of an MVC framework that behaves like Rails.  You
 can define routes, define associations between models, and render views via
 controllers.  Data is persisted between requests, but in this example I do reset
-the database before starting up the server.  Again, it was rendered almost
-trivial with knowledge of the APIs of the libraries Rack,
-active_support/inflector, Regexp, and ERB, but it was .  To experiment with it,
-install SQLite, run 'ruby server.rb' and use the following API I have set up to
-interact with the database via the browser:
+the database before starting up the server.  Algorithmically speaking, it was
+rendered almost trivial with knowledge of the APIs of the following libraries:
+Rack, active_support/inflector, Regexp, and ERB.  With respect to object-oriented
+design, it was good practice.  To experiment with it, install SQLite, run
+'ruby server.rb' and use the following API I have set up to interact with the
+database via the browser:
 
 '/users' - lists all users in the database
 '/users/new' - create a new user
