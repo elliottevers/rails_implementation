@@ -96,6 +96,15 @@ class ActiveRecordsBase
     SQL
   end
 
+  def destroy
+    Database.execute(<<-SQL, id)
+      DELETE FROM
+        #{self.class.table_name}
+      WHERE
+        #{self.class.table_name}.id = ?
+    SQL
+  end
+
   def save
     id.nil? ? insert : update
   end

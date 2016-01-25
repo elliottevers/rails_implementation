@@ -10,6 +10,7 @@ require_relative '../lib/router'
     get "^/users$", :users, :index
     get "^/users/new$", :users, :new
     post "^/users$", :users, :create
+    delete "^/users/(?<user_id>\\d+)", :users, :destroy
 
     get "^/users/(?<user_id>\\d+)/conversations$", :conversations, :index
     get "^/conversations/new$", :conversations, :new

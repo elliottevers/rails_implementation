@@ -25,6 +25,11 @@ class UsersController < ApplicationController
     render :new
   end
 
+  def destroy
+    @user = User.find(Integer(params['user_id']))
+    @user.first.destroy
+  end
+
   def show
     @user = User.find(Integer(params['user_id']))
     render @user.to_json
