@@ -6,20 +6,20 @@ require_relative '../lib/router'
   @router = Router.new
 
   @router.draw do
-    get "^/users/(?<user_id>\\d+)$", :users, :show
-    get "^/users$", :users, :index
-    get "^/users/new$", :users, :new
-    post "^/users$", :users, :create
-    delete "^/users/(?<user_id>\\d+)", :users, :destroy
+    get "^/users/(?<user_id>\\d+)$", to: 'users#show'
+    get "^/users$", to: 'users#index'
+    get "^/users/new$", to: 'users#new'
+    post "^/users$", to: 'users#create'
+    delete "^/users/(?<user_id>\\d+)", to: 'users#destroy'
 
-    get "^/users/(?<user_id>\\d+)/conversations$", :conversations, :index
-    get "^/conversations/new$", :conversations, :new
-    post "^/conversations$", :conversations, :create
-    get "^/users/(?<user_id>\\d+)/conversations/(?<conversation_id>\\d+)$", :conversations, :show
+    get "^/users/(?<user_id>\\d+)/conversations$", to: 'conversations#index'
+    get "^/conversations/new$", to: 'conversations#new'
+    post "^/conversations$", to: 'conversations#create'
+    get "^/users/(?<user_id>\\d+)/conversations/(?<conversation_id>\\d+)$", to: 'conversations#show'
 
-    get "^/conversations/(?<conversation_id>\\d+)/messages$", :messages, :index
-    get "^/messages/new$", :messages, :new
-    post "^/messages$", :messages, :create
+    get "^/conversations/(?<conversation_id>\\d+)/messages$", to: 'messages#index'
+    get "^/messages/new$", to: 'messages#new'
+    post "^/messages$", to: 'messages#create'
   end
 
 end

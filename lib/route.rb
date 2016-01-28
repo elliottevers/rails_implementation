@@ -18,7 +18,7 @@ class Route
   def run(req, res)
     match_data = @pattern.match(req.path)
     params = Hash[match_data.names.zip(match_data.captures)]
-    @associated_controller.new(req, res, params).run_method(method)
+    @associated_controller.new(req, res, params).send(method)
   end
 
   def matches?(req)

@@ -10,7 +10,8 @@ class Router
   end
 
   [:get, :post, :put, :delete].each do |http_method|
-    define_method(http_method) do |pattern, controller, method|
+    define_method(http_method) do |pattern, full_method|
+      controller, method = full_method[:to].split("#")
       add_route(pattern, http_method, controller, method)
     end
   end
